@@ -1,6 +1,9 @@
 import FormInput from "./FormInput";
 import {FormEvent, RefObject, useRef, useState} from "react";
 import {isMoreThanZero, isPositiveInteger, notEmpty} from "../validators/validators";
+import {useAddTransactionMutation} from "../store/api/transactionApi";
+import moment from "moment";
+import {toast} from "react-toastify";
 
 const AddTransaction = () => {
     const descriptionRef = useRef<HTMLInputElement>(document.createElement('input'));
@@ -9,9 +12,12 @@ const AddTransaction = () => {
     const beneficiaryRef = useRef<HTMLInputElement>(document.createElement('input'));
     const amountRef = useRef<HTMLInputElement>(document.createElement('input'));
 
+    const [addTransaction, result] = useAddTransactionMutation();
     const [formErrors, setFormErrors] = useState<Record<string, string[]>>({});
     const [validated, setValidated] = useState<boolean>(false);
 
+    const currentDate = moment();
+    const formattedDate = currentDate.format('YYY-MM-DD HH:mm:ss');
 
     const validateField = (refInput: RefObject<HTMLInputElement>, validator: Function, message: string) => {
         if (!refInput.current) return false;
@@ -49,9 +55,26 @@ const AddTransaction = () => {
         ];
         const isFormValid = !validation.includes(false);
         setValidated(isFormValid);
-
-        if(isFormValid) {
-
+        console.log(result.isError);
+        if(result.isError === true) {
+            console.log('abc');
+        }
+        if (isFormValid) {
+            addTransaction({
+                address: addressRef.current.value,
+                amount: parseInt(amountRef.current.value),
+                beneficiary: beneficiaryRef.current.value,
+                account: accountRef.current.value,
+                date: formattedDate,
+                description: descriptionRef.current.value,
+            });
+            toast.success("Transaction added successfully!", {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+        } else {
+            toast.error("An error occured", {
+                position: toast.POSITION.TOP_RIGHT,
+            });
         }
     }
 
