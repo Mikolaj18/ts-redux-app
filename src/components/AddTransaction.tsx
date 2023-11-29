@@ -17,7 +17,7 @@ const AddTransaction = () => {
     const [validated, setValidated] = useState<boolean>(false);
 
     const currentDate = moment();
-    const formattedDate = currentDate.format('YYY-MM-DD HH:mm:ss');
+    const formattedDate = currentDate.format('YYYY-MM-DD HH:mm:ss');
 
     const validateField = (refInput: RefObject<HTMLInputElement>, validator: Function, message: string) => {
         if (!refInput.current) return false;
@@ -42,8 +42,9 @@ const AddTransaction = () => {
         return validation;
     }
 
-    const handleFormSubmit = (e: FormEvent) => {
+    const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const validation = [
             validateField(descriptionRef, notEmpty, "Cannot be empty"),
             validateField(addressRef, notEmpty, "Cannot be empty"),
@@ -53,20 +54,38 @@ const AddTransaction = () => {
             validateField(amountRef, notEmpty, "Cannot be empty"),
             validateField(amountRef, isMoreThanZero, "Should be a number bigger than 0"),
         ];
+
         const isFormValid = !validation.includes(false);
         setValidated(isFormValid);
-        console.log(result.isError);
-        if(result.isError === true) {
-            console.log('abc');
-        }
-        if (isFormValid) {
-            addTransaction({
-                address: addressRef.current.value,
-                amount: parseInt(amountRef.current.value),
-                beneficiary: beneficiaryRef.current.value,
-                account: accountRef.current.value,
-                date: formattedDate,
-                description: descriptionRef.current.value,
+
+        try {
+            if (isFormValid) {
+                await addTransaction({
+                    address: addressRef.current.value,
+                    amount: parseInt(amountRef.current.value),
+                    beneficiary: beneficiaryRef.current.value,
+                    account: accountRef.current.value,
+                    date: formattedDate,
+                    description: descriptionRef.current.value,
+                }).unwrap();
+                toast.success("Transaction added successfully!", {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+
+                descriptionRef.current.value  = "";
+                addressRef.current.value  = "";
+                accountRef.current.value  = "";
+                beneficiaryRef.current.value  = "";
+                amountRef.current.value  = "";
+            } else {
+                toast.error("Fix form error(s)", {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+            }
+        } catch (error) {
+            // @ts-ignore
+            toast.error(`An unexpected error has occurred (code ${error.status})`, {
+                position: toast.POSITION.TOP_RIGHT,
             });
         }
     }

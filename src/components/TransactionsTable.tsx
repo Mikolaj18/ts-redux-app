@@ -1,7 +1,6 @@
 import React from "react";
 import { useFetchTransactionsQuery } from "../store/api/transactionApi";
 import TransactionListItem from "./TransactionListItem";
-import { TTransaction } from "../types/Transactions";
 
 const TransactionsTable = () => {
     const { data, error, isLoading } = useFetchTransactionsQuery();
