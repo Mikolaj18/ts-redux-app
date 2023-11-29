@@ -5,7 +5,7 @@ const Filter = () => {
     const searchRef = useRef<HTMLInputElement>(document.createElement('input'));
     return (
       <div>
-          <FormInput name="Search" id="search" type="text" ref={searchRef}/>
+          <FormInput name="Search" id="search" type="text" ref={searchRef} placeholder="Search by beneficiary"/>
       </div>
     );
 }

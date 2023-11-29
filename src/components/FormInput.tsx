@@ -4,12 +4,13 @@ type TFormInput = {
     name: string,
     id: string,
     type: string,
-    error?: string,
+    placeholder?: string,
+    errors?: string[],
     min?: number,
     max?: number,
 }
 
-const FormInput = forwardRef(({name, id, type, error, min, max}: TFormInput, ref: ForwardedRef<HTMLInputElement>) => {
+const FormInput = forwardRef(({name, id, type, placeholder, errors, min, max}: TFormInput, ref: ForwardedRef<HTMLInputElement>) => {
     return (
         <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>{name}</label>
@@ -17,12 +18,19 @@ const FormInput = forwardRef(({name, id, type, error, min, max}: TFormInput, ref
                 ref={ref}
                 name={name}
                 id={id}
+                placeholder={placeholder}
                 type={type}
                 min={min}
                 max={max}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            {error && <p className="text-red-500 text-xs italic">{error}</p>}
+            {errors &&
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li className="text-red-500 text-xs" key={idx}>{error}</li>
+                    ))}
+                </ul>
+            }
         </div>
     );
 });
