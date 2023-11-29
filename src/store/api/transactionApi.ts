@@ -9,14 +9,15 @@ export const transactionApi = createApi({
     tagTypes: ['Transaction'],
     endpoints: (builder) => ({
         fetchTransactions: builder.query<TTransaction[], void>({
+            providesTags: (result, error, arg) => [{type: 'Transaction'}],
             query: () => ({
                 url: '/transactions',
             }),
         }),
         addTransaction: builder.mutation<TTransaction, TPostTransaction>({
-            invalidatesTags: (result, error, user) => [{type: 'Transaction'}],
+            invalidatesTags: (result, error, arg) => [{type: 'Transaction'}],
             query: (body) => ({
-                url: '/transactions5yt',
+                url: '/transactions',
                 method: 'POST',
                 body,
             }),

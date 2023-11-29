@@ -68,13 +68,6 @@ const AddTransaction = () => {
                 date: formattedDate,
                 description: descriptionRef.current.value,
             });
-            toast.success("Transaction added successfully!", {
-                position: toast.POSITION.TOP_RIGHT,
-            });
-        } else {
-            toast.error("An error occured", {
-                position: toast.POSITION.TOP_RIGHT,
-            });
         }
     }
 

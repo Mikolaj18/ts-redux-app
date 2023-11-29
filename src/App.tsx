@@ -7,6 +7,7 @@ import Balance from "./components/Balance";
 import Filter from "./components/Filter";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
+import TransactionsTable from "./components/TransactionsTable";
 
 function App() {
     return (
@@ -23,6 +24,9 @@ function App() {
                     <div className="w-full md:w-1/2">
                         <AddTransaction/>
                     </div>
+                </div>
+                <div>
+                    <TransactionsTable/>
                 </div>
                 <Footer/>
             </main>
