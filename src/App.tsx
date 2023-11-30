@@ -9,6 +9,7 @@ import {ToastContainer} from "react-toastify";
 import TransactionsTable from "./components/TransactionsTable";
 import {useFetchTransactionsQuery} from "./store/api/transactionApi";
 import {TTransaction} from "./types/Transactions";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 function App() {
     const { data, error, isLoading } = useFetchTransactionsQuery();
@@ -23,7 +24,6 @@ function App() {
     ) as TTransaction[];
 
     const totalBalance = filteredTransactions?.reduce((total, amount) => total + amount.amount, 0);
-
     return (
         <>
             <ToastContainer/>
@@ -40,7 +40,7 @@ function App() {
                     </div>
                 </div>
                 <div className="container max-w-7xl mx-auto">
-                    <TransactionsTable data={filteredTransactions} isLoading={isLoading} error={error}/>
+                    <TransactionsTable data={filteredTransactions} isLoading={isLoading} error={error as FetchBaseQueryError}/>
                 </div>
                 <Footer/>
             </main>

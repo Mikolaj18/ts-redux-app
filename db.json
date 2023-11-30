@@ -5,7 +5,7 @@
       "amount": 61,
       "beneficiary": "Velit sunt dolor pro",
       "account": "39",
-      "date": "232023-11-29 15:12:05",
+      "date": "2023-11-29 15:12:05",
       "description": "Sit molestiae volupt",
       "id": 1
     },
@@ -17,6 +17,42 @@
       "date": "2023-11-30 14:36:57",
       "description": "Id vero eaque ration",
       "id": 2
+    },
+    {
+      "address": "Duis eos excepteur ",
+      "amount": 33.57,
+      "beneficiary": "Consectetur dolorum ",
+      "account": "69",
+      "date": "2023-11-30 17:31:30",
+      "description": "Quis molestias autem",
+      "id": 3
+    },
+    {
+      "address": "Exercitation dolorem",
+      "amount": 16.12,
+      "beneficiary": "Obcaecati molestiae ",
+      "account": "14",
+      "date": "2023-11-30 17:31:36",
+      "description": "Quaerat exercitation",
+      "id": 4
+    },
+    {
+      "address": "Et doloremque repreh",
+      "amount": 733.87,
+      "beneficiary": "Consequat Excepturi",
+      "account": "17",
+      "date": "2023-11-30 17:31:45",
+      "description": "Omnis minim doloribu",
+      "id": 5
+    },
+    {
+      "address": "Beatae aliquip non n",
+      "amount": 2,
+      "beneficiary": "Quam voluptate et se",
+      "account": "52",
+      "date": "2023-11-30 17:38:21",
+      "description": "Dolorem sequi quod q",
+      "id": 6
     }
   ]
 }
