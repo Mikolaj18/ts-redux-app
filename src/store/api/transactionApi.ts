@@ -23,6 +23,7 @@ export const transactionApi = createApi({
             }),
         }),
         removeTransaction: builder.mutation<void, TTransaction>({
+            invalidatesTags: (result, error, arg) => [{type: 'Transaction'}],
             query: (transaction) => ({
                 url: `/transactions/${transaction.id}`,
                 method: 'DELETE',

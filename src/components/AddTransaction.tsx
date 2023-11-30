@@ -97,7 +97,7 @@ const AddTransaction = () => {
             <FormInput name="Account" id="account" type="number" placeholder="10110104415359647878000000000" min={1} ref={accountRef} errors={formErrors['Account']}/>
             <FormInput name="Beneficiary" id="beneficiary" type="text" placeholder="Amie Whitley" ref={beneficiaryRef} errors={formErrors['Beneficiary']}/>
             <FormInput name="Amount" id="amount" type="number" placeholder="655.51" min={1} ref={amountRef} errors={formErrors['Amount']}/>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded">Add</button>
+            <button disabled={result.isLoading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded">Add</button>
         </form>
     )
 }

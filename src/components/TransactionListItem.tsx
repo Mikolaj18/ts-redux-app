@@ -1,11 +1,13 @@
 import {TTransaction} from "../types/Transactions";
+import {useRemoveTransactionMutation} from "../store/api/transactionApi";
 
 type TTransactionListItem = {
     transaction: TTransaction,
 }
 const TransactionListItem = ({transaction}: TTransactionListItem) => {
+    const [removeTransaction, result] = useRemoveTransactionMutation();
     const handleRemoveTransaction = () => {
-
+        removeTransaction(transaction);
     }
 
     return (
