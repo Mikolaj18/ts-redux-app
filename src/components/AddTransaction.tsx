@@ -62,7 +62,7 @@ const AddTransaction = () => {
             if (isFormValid) {
                 await addTransaction({
                     address: addressRef.current.value,
-                    amount: parseInt(amountRef.current.value),
+                    amount: parseFloat(amountRef.current.value),
                     beneficiary: beneficiaryRef.current.value,
                     account: accountRef.current.value,
                     date: formattedDate,

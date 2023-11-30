@@ -1,12 +1,15 @@
 import FormInput from "./FormInput";
-import {useRef} from "react";
+import React from "react";
 
-const Filter = () => {
-    const searchRef = useRef<HTMLInputElement>(document.createElement('input'));
+type TFilter = {
+    setFilterEntry: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Filter = ({ setFilterEntry }: TFilter) => {
     return (
-      <div>
-          <FormInput name="Search" id="search" type="text" ref={searchRef} placeholder="Search by beneficiary"/>
-      </div>
+        <div>
+            <FormInput name="Search" id="search" type="text" onChange={(e) => setFilterEntry(e.target.value)} placeholder="Search by beneficiary"/>
+        </div>
     );
 }
 

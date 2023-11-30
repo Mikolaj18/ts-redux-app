@@ -5,7 +5,7 @@ type TTransactionListItem = {
     transaction: TTransaction,
 }
 const TransactionListItem = ({transaction}: TTransactionListItem) => {
-    const [removeTransaction, result] = useRemoveTransactionMutation();
+    const [removeTransaction] = useRemoveTransactionMutation();
     const handleRemoveTransaction = () => {
         removeTransaction(transaction);
     }

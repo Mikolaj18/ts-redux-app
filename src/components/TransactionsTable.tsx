@@ -1,10 +1,14 @@
 import React from "react";
-import { useFetchTransactionsQuery } from "../store/api/transactionApi";
 import TransactionListItem from "./TransactionListItem";
+import { TTransaction } from "../types/Transactions";
 
-const TransactionsTable = () => {
-    const { data, error, isLoading } = useFetchTransactionsQuery();
+type TTransactionsTable = {
+    data: TTransaction[],
+    isLoading: boolean,
+    error: any,
+};
 
+const TransactionsTable = ({ data, isLoading, error }: TTransactionsTable) => {
     let content;
     if (isLoading) {
         content = <tr><td colSpan={6}>Loading data...</td></tr>;

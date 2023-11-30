@@ -1,7 +1,6 @@
-import {type} from "os";
 
 export const notEmpty = (entry: string): boolean => {
-    if(typeof entry === null || typeof entry === "undefined") return false;
+    if(typeof entry === "undefined") return false;
 
     return entry.trim().length > 0;
 }
