@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 1rem;
+}
+
+.pagination li {
+    margin: 0.5rem;
+}
+
+.pagination-previous,
+.pagination-next {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+}
+
+.pagination-disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.active {
+    color: #3182ce;
+    font-weight: bold;
+}

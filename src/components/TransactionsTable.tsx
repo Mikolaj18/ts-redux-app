@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import TransactionListItem from "./TransactionListItem";
 import {TTransaction} from "../types/Transactions";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import ReactPaginate from "react-paginate";
 
 
 type TTransactionsTable = {
@@ -11,6 +12,19 @@ type TTransactionsTable = {
 };
 
 const TransactionsTable = ({data, isLoading, error}: TTransactionsTable) => {
+    const itemsPerPage = 20;
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const handlePageChange = ({ selected }: { selected: number }) => {
+        setCurrentPage(selected);
+    };
+
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = data?.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(data?.length / itemsPerPage);
+
     let content;
     if (isLoading) {
         content = <tr>
@@ -21,8 +35,8 @@ const TransactionsTable = ({data, isLoading, error}: TTransactionsTable) => {
             <td className="text-black text-3xl p-4" colSpan={6}>Failed to get data.</td>
         </tr>;
     } else {
-        content = data?.map((transaction) => (
-            <TransactionListItem key={transaction.id} transaction={transaction}/>
+        content = currentItems.map((transaction) => (
+            <TransactionListItem key={transaction.id} transaction={transaction} />
         ));
     }
 
@@ -41,6 +55,21 @@ const TransactionsTable = ({data, isLoading, error}: TTransactionsTable) => {
                 </thead>
                 <tbody>{content}</tbody>
             </table>
+
+            <ReactPaginate
+                previousLabel={"previous"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                pageCount={totalPages}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageChange}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                previousClassName={"pagination-previous"}
+                nextClassName={"pagination-next"}
+                disabledClassName={"pagination-disabled"}
+            />
         </div>
     );
 };
