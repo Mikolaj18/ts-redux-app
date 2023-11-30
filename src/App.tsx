@@ -24,7 +24,7 @@ function App() {
                         <AddTransaction/>
                     </div>
                 </div>
-                <div>
+                <div className="container max-w-7xl mx-auto">
                     <TransactionsTable/>
                 </div>
                 <Footer/>
