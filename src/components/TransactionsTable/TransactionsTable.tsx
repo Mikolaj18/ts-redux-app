@@ -21,9 +21,9 @@ const TransactionsTable = ({data, isLoading, error}: TTransactionsTable) => {
 
     const indexOfLastItem = (currentPage + 1) * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data?.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = data?.slice(indexOfFirstItem, indexOfLastItem) ?? [];
 
-    const totalPages = Math.ceil(data?.length / itemsPerPage);
+    const totalPages = Math.ceil((data?.length ?? 0) / itemsPerPage);
 
     let content;
     if (isLoading) {

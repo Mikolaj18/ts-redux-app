@@ -1,5 +1,5 @@
 type TBalance = {
-    totalBalance?: number;
+    totalBalance?: number,
 };
 
 const Balance = ({ totalBalance }: TBalance) => {
