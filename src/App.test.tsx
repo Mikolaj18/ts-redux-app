@@ -6,13 +6,13 @@ import {rest} from "msw";
 import userEvent from "@testing-library/user-event";
 import {act} from "react-dom/test-utils";
 
-const renderComponent = async () => {
+const renderComponent =  () => {
     renderWithProviders(<App />);
 }
 
 describe('Fetching', () => {
     it('Should successfully fetch all transactions and display them on the screen', async () => {
-        await renderComponent();
+        renderComponent();
         const loadingState = screen.getByText(/loading data.../i);
         expect(loadingState).toBeInTheDocument();
 
@@ -32,7 +32,7 @@ describe('Fetching', () => {
             ),
         );
 
-        await renderComponent();
+        renderComponent();
 
         screen.getByText(/loading data.../i);
         const errorMessage = await screen.findByText('Failed to get data.');
@@ -40,8 +40,14 @@ describe('Fetching', () => {
     });
 });
 
+it('Should render correct balance amount', async () => {
+    renderComponent();
+    const balance = await screen.findByText('30.00$');
+    expect(balance).toBeInTheDocument();
+});
+
 it('Should filter the transactions', async () => {
-    await renderComponent();
+    renderComponent();
     const filterInput = screen.getByPlaceholderText('Search by beneficiary');
 
     await act(async () => {
@@ -51,3 +57,13 @@ it('Should filter the transactions', async () => {
     expect(links).toHaveLength(1);
 });
 
+it('Should show filtered transactions balance amount', async () => {
+    renderComponent();
+    const filterInput = screen.getByPlaceholderText('Search by beneficiary');
+
+    await act(async () => {
+        userEvent.type(filterInput, 'Carl');
+    });
+    const balance = await screen.findByText('20.00$');
+    expect(balance).toBeInTheDocument();
+});
