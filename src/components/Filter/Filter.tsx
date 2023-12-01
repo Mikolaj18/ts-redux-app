@@ -1,4 +1,4 @@
-import FormInput from "./FormInput";
+import FormInput from "../FormInput/FormInput";
 import React from "react";
 
 type TFilter = {

@@ -1,12 +1,12 @@
 import React, {useMemo, useState} from 'react';
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import AddTransaction from "./components/AddTransaction";
-import Balance from "./components/Balance";
-import Filter from "./components/Filter";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import AddTransaction from "./components/AddTransaction/AddTransaction";
+import Balance from "./components/Balance/Balance";
+import Filter from "./components/Filter/Filter";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
-import TransactionsTable from "./components/TransactionsTable";
+import TransactionsTable from "./components/TransactionsTable/TransactionsTable";
 import {useFetchTransactionsQuery} from "./store/api/transactionApi";
 import {TTransaction} from "./types/Transactions";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";

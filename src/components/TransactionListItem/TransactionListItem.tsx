@@ -1,5 +1,5 @@
-import {TTransaction} from "../types/Transactions";
-import {useRemoveTransactionMutation} from "../store/api/transactionApi";
+import {TTransaction} from "../../types/Transactions";
+import {useRemoveTransactionMutation} from "../../store/api/transactionApi";
 
 type TTransactionListItem = {
     transaction: TTransaction,

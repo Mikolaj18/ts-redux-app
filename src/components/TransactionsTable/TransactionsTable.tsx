@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import TransactionListItem from "./TransactionListItem";
-import {TTransaction} from "../types/Transactions";
+import TransactionListItem from "../TransactionListItem/TransactionListItem";
+import {TTransaction} from "../../types/Transactions";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import ReactPaginate from "react-paginate";
 

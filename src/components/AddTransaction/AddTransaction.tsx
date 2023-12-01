@@ -1,7 +1,7 @@
-import FormInput from "./FormInput";
+import FormInput from "../FormInput/FormInput";
 import {FormEvent, RefObject, useRef, useState} from "react";
-import {isMoreThanZero, isPositiveInteger, notEmpty} from "../validators/validators";
-import {useAddTransactionMutation} from "../store/api/transactionApi";
+import {isMoreThanZero, isPositiveInteger, notEmpty} from "../../validators/validators";
+import {useAddTransactionMutation} from "../../store/api/transactionApi";
 import moment from "moment";
 import {toast} from "react-toastify";
 
