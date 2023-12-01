@@ -1,6 +1,7 @@
 import {screen} from "@testing-library/react";
 import TransactionsTable from "../TransactionsTable";
 import {renderWithProviders} from "../../../utils/test-utils";
+import exp from "constants";
 
 const mockTransactions = [
     {
@@ -41,4 +42,14 @@ it("Should display transactions table", () => {
    const rows = screen.getAllByTestId('row');
    expect(headers).toHaveLength(6);
    expect(rows).toHaveLength(3);
+});
+
+it('Should display pagination', () => {
+    renderComponent();
+    const nextButton = screen.getByLabelText('Next page');
+    const prevButton = screen.getByLabelText('Previous page');
+    const currentPage = screen.getByLabelText('Page 1 is your current page');
+    expect(nextButton).toBeInTheDocument();
+    expect(prevButton).toBeInTheDocument();
+    expect(currentPage).toBeInTheDocument();
 });
