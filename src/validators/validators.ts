@@ -1,4 +1,3 @@
-
 export const notEmpty = (entry: string): boolean => {
     if(typeof entry === "undefined") return false;
 

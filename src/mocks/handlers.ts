@@ -1,4 +1,4 @@
-import { rest } from 'msw'
+import {rest} from 'msw'
 
 export const handlers = [
     rest.get('http://localhost:3001/transactions', (req, res, ctx) => {
@@ -24,6 +24,23 @@ export const handlers = [
                     "id": 2
                 },
             ]),
-        )
+        );
+    }),
+    rest.post('http://localhost:3001/transactions', async (req, res, ctx) => {
+        const {address, amount, beneficiary, account, date, description} = await req.json()
+
+        return res(
+            ctx.status(201),
+            ctx.json(
+                {
+                    "address": address,
+                    "amount": amount,
+                    "beneficiary": beneficiary,
+                    "account": account,
+                    "date": date,
+                    "description": description,
+                    "id": 7
+                }),
+        );
     }),
 ]
